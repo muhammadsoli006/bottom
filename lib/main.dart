@@ -1,41 +1,34 @@
-import 'package:bottom/counter.dart';
-import 'package:bottom/home.dart';
-import 'package:bottom/profile.dart';
-import 'package:bottom/search.dart';
 import 'package:flutter/material.dart';
+import 'home.dart';
+import 'counter.dart';
+import 'profile.dart';
+import 'search.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MainScreen(),
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
     );
   }
 }
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
+class MyHomePage extends StatefulWidget {
   @override
-  // ignore: library_private_types_in_public_api
-  _MainScreenState createState() => _MainScreenState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-
-  final List<Widget> _pages = [
-    const HomeScreen(),
-    const SearchScreen(),
-    const CounterScreen(),
-    const ProfileScreen(),
-  ];
+  final List<Widget> _screens = [HomeScreen(), CounterScreen(), ProfileScreen(), SearchScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -46,30 +39,21 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.countertops),
-            label: 'Counter',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      ),
+  items: const <BottomNavigationBarItem>[
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+    BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+    BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Counter'),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+  ],
+  currentIndex: _selectedIndex,
+  selectedItemColor: Colors.blue, 
+  unselectedItemColor: Colors.grey, 
+  onTap: _onItemTapped,
+),
     );
   }
 }
+
+
