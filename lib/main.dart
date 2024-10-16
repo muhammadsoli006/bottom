@@ -5,10 +5,12 @@ import 'profile.dart';
 import 'search.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,19 +18,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  final List<Widget> _screens = [HomeScreen(), CounterScreen(), ProfileScreen(), SearchScreen()];
+  final List<Widget> _screens = [const HomeScreen(), const CounterScreen(), const ProfileScreen(), const SearchScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
